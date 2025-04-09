@@ -13,13 +13,9 @@ import java.util.List;
 @RequestMapping("/utilisateurs")
 @AllArgsConstructor
 public class UtilisateurController {
-//ghp_qZt
-//uXUYOUS8ic
 
     private final UtilisateurService utilisateurService;
 
-//riAhw83lst
-//vXNjep715Pqgn
     @PostMapping
     public ResponseEntity<Utililsateur> ajoutUtilisateur(@RequestBody Utililsateur utililsateur){
         return new ResponseEntity<>(this.utilisateurService.ajouterUtililsateur(utililsateur), HttpStatus.CREATED);

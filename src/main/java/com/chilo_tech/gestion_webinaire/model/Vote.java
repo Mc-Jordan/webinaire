@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 
 @Entity
@@ -21,7 +21,7 @@ public class Vote {
     private int id;
 
     @Column(nullable = false)
-    private Date dateVote;
+    private Timestamp dateVote;
 
     @ManyToOne
     private Utililsateur utililsateur;
