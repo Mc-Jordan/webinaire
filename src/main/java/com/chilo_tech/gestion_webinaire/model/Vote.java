@@ -24,7 +24,7 @@ public class Vote {
     private Timestamp dateVote;
 
     @ManyToOne
-    private Utilisateur utililsateur;
+    private Utilisateur utilisateur;
 
     @ManyToOne
     private Poll poll;

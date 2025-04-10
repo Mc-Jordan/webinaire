@@ -7,15 +7,15 @@ import java.util.List;
 
 public interface IUtilisateurService {
 
-    UtilisateurResponse ajouterUtililsateur(Utilisateur utililsateur);
+    UtilisateurResponse ajouterutilisateur(Utilisateur utilisateur);
 
-    List<UtilisateurResponse> ajouterUtililsateur(List<Utilisateur> utililsateurs);
+    List<UtilisateurResponse> ajouterutilisateur(List<Utilisateur> utilisateurs);
 
-    UtilisateurResponse modifierUtililsateur(Utilisateur utililsateur, int id);
+    UtilisateurResponse modifierutilisateur(Utilisateur utilisateur, int id);
 
     void supprimerUtilisateur(int id);
 
-    List<UtilisateurResponse> afficherUtililsateur();
+    List<UtilisateurResponse> afficherutilisateur();
 
-    UtilisateurResponse afficherUtililsateur(int id);
+    UtilisateurResponse afficherutilisateur(int id);
 }

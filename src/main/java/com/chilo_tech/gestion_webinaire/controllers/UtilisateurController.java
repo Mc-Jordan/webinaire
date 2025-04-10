@@ -21,28 +21,28 @@ public class UtilisateurController {
 
     @PostMapping
     public ResponseEntity<?> ajoutUtilisateur(@RequestBody UtilisateurRequest utilisateurRequest) {
-        return new ResponseEntity<>(this.utilisateurService.ajouterUtililsateur(this.utilisateurRequestMapper.apply(utilisateurRequest)), HttpStatus.CREATED);
+        return new ResponseEntity<>(this.utilisateurService.ajouterutilisateur(this.utilisateurRequestMapper.apply(utilisateurRequest)), HttpStatus.CREATED);
     }
 
 
     @PostMapping("/all")
-    public ResponseEntity<List<?>> ajoutUtilisateurs(@RequestBody List<UtilisateurRequest> utililsateursRequests) {
-        return new ResponseEntity<>(this.utilisateurService.ajouterUtililsateur(utililsateursRequests.stream().map(this.utilisateurRequestMapper).toList()), HttpStatus.CREATED);
+    public ResponseEntity<List<?>> ajoutUtilisateurs(@RequestBody List<UtilisateurRequest> utilisateursRequests) {
+        return new ResponseEntity<>(this.utilisateurService.ajouterutilisateur(utilisateursRequests.stream().map(this.utilisateurRequestMapper).toList()), HttpStatus.CREATED);
     }
 
     @GetMapping
     public ResponseEntity<List<?>> afficheUtilisateur() {
-        return new ResponseEntity<>(this.utilisateurService.afficherUtililsateur(), HttpStatus.FOUND);
+        return new ResponseEntity<>(this.utilisateurService.afficherutilisateur(), HttpStatus.FOUND);
     }
 
     @GetMapping("/utilisateur/{id}")
     public ResponseEntity<?> afficheUtilisateur(@PathVariable int id) {
-        return new ResponseEntity<>(this.utilisateurService.afficherUtililsateur(id), HttpStatus.FOUND);
+        return new ResponseEntity<>(this.utilisateurService.afficherutilisateur(id), HttpStatus.FOUND);
     }
 
     @PutMapping("/utilisateur/{id}")
-    public ResponseEntity<UtilisateurResponse> modifierUtilisateur(@PathVariable int id, @RequestBody UtilisateurRequest utililsateurRequest) {
-        return new ResponseEntity<>(this.utilisateurService.modifierUtililsateur(this.utilisateurRequestMapper.apply(utililsateurRequest), id), HttpStatus.ACCEPTED);
+    public ResponseEntity<UtilisateurResponse> modifierUtilisateur(@PathVariable int id, @RequestBody UtilisateurRequest utilisateurRequest) {
+        return new ResponseEntity<>(this.utilisateurService.modifierutilisateur(this.utilisateurRequestMapper.apply(utilisateurRequest), id), HttpStatus.ACCEPTED);
     }
 
     @DeleteMapping("/utilisateur/{id}")

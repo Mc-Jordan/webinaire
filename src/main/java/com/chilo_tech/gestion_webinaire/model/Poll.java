@@ -30,7 +30,7 @@ public class Poll {
     private boolean isMultipleOption = false;
 
     @ManyToOne
-    private Utilisateur utililsateur;
+    private Utilisateur utilisateur;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Option> options;

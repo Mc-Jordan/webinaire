@@ -20,16 +20,16 @@ public class UtilisateurService implements IUtilisateurService {
 
     //ajout d'un seul utilisateur dans la base de données
     @Override
-    public UtilisateurResponse ajouterUtililsateur(Utilisateur utililsateur) {
-        if (utililsateur.getNomUtilisateur().isEmpty()
-                || utililsateur.getEmail().isEmpty()
-                || utililsateur.getMotDePasse().isEmpty()) {
+    public UtilisateurResponse ajouterutilisateur(Utilisateur utilisateur) {
+        if (utilisateur.getNomUtilisateur().isEmpty()
+                || utilisateur.getEmail().isEmpty()
+                || utilisateur.getMotDePasse().isEmpty()) {
             throw new RuntimeException("Les Champs ne sont pas correctement remplis");
         }
-        if (!utiliseurRepository.existsByEmail(utililsateur.getEmail())
-                && !utiliseurRepository.existsBynomUtilisateur(utililsateur.getNomUtilisateur())) {
-            utililsateur.setDateCreation(Timestamp.from(Instant.now()));
-            return this.utilisateurResponseMapper.apply(this.utiliseurRepository.save(utililsateur));
+        if (!utiliseurRepository.existsByEmail(utilisateur.getEmail())
+                && !utiliseurRepository.existsBynomUtilisateur(utilisateur.getNomUtilisateur())) {
+            utilisateur.setDateCreation(Timestamp.from(Instant.now()));
+            return this.utilisateurResponseMapper.apply(this.utiliseurRepository.save(utilisateur));
         } else {
             throw new RuntimeException("Cet utilisateur existe déjà");
         }
@@ -37,30 +37,30 @@ public class UtilisateurService implements IUtilisateurService {
 
     //ajout de plusieurs utilisateus dans la base de données
     @Override
-    public List<UtilisateurResponse> ajouterUtililsateur(List<Utilisateur> utililsateurs) {
-        for (Utilisateur utililsateur : utililsateurs) {
-            if (utililsateur.getNomUtilisateur().isEmpty()
-                    || utililsateur.getEmail().isEmpty()) {
+    public List<UtilisateurResponse> ajouterutilisateur(List<Utilisateur> utilisateurs) {
+        for (Utilisateur utilisateur : utilisateurs) {
+            if (utilisateur.getNomUtilisateur().isEmpty()
+                    || utilisateur.getEmail().isEmpty()) {
                 throw new RuntimeException("Les Champs ne sont pas correctement remplis");
             }
 
-            if (utiliseurRepository.existsByEmail(utililsateur.getEmail())
-                    && utiliseurRepository.existsBynomUtilisateur(utililsateur.getNomUtilisateur())) {
+            if (utiliseurRepository.existsByEmail(utilisateur.getEmail())
+                    && utiliseurRepository.existsBynomUtilisateur(utilisateur.getNomUtilisateur())) {
                 throw new RuntimeException("Un utilisateur existe déjà");
             }
 
         }
-        return this.utiliseurRepository.saveAll(utililsateurs).stream().map(this.utilisateurResponseMapper).toList();
+        return this.utiliseurRepository.saveAll(utilisateurs).stream().map(this.utilisateurResponseMapper).toList();
     }
 
     //methode pour modifier les informations d'un utilisateur
     @Override
-    public UtilisateurResponse modifierUtililsateur(Utilisateur utililsateur, int id) {
-        Utilisateur utililsateurTrouve = this.utiliseurRepository.findById(id)
+    public UtilisateurResponse modifierutilisateur(Utilisateur utilisateur, int id) {
+        Utilisateur utilisateurTrouve = this.utiliseurRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Aucun utilisateur avec cet identifiant"));
 
-        utililsateurTrouve.setMotDePasse(utililsateur.getMotDePasse().isEmpty() ? utililsateurTrouve.getMotDePasse() : utililsateur.getMotDePasse());
-        return this.utilisateurResponseMapper.apply(this.utiliseurRepository.saveAndFlush(utililsateurTrouve));
+        utilisateurTrouve.setMotDePasse(utilisateur.getMotDePasse().isEmpty() ? utilisateurTrouve.getMotDePasse() : utilisateur.getMotDePasse());
+        return this.utilisateurResponseMapper.apply(this.utiliseurRepository.saveAndFlush(utilisateurTrouve));
     }
 
     //mehode pour la suppression d'un utilisateur
@@ -73,14 +73,14 @@ public class UtilisateurService implements IUtilisateurService {
 
     //methode pour afficher la liste compplète des utilisateurs
     @Override
-    public List<UtilisateurResponse> afficherUtililsateur() {
+    public List<UtilisateurResponse> afficherutilisateur() {
         return this.utiliseurRepository.findAll().stream().map(this.utilisateurResponseMapper).toList();
     }
 
 
     //methode pour afficher les informations sur un seul utilisateur
     @Override
-    public UtilisateurResponse afficherUtililsateur(int id) {
+    public UtilisateurResponse afficherutilisateur(int id) {
         return this.utilisateurResponseMapper.apply(this.utiliseurRepository.findById(id).orElseThrow(() -> new RuntimeException("C'est identifiant ne correspond à aucun utlisateur")));
     }
 }

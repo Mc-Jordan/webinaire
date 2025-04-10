@@ -11,7 +11,7 @@ public record PollResponse(
         String question,
         Timestamp dateCreation,
         boolean isMultipleOption,
-        Utilisateur utililsateur,
+        Utilisateur utilisateur,
         Stream<Map<String, Object>> options
 ){
 }

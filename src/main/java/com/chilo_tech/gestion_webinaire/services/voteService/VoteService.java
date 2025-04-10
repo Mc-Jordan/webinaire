@@ -106,7 +106,7 @@ public class VoteService implements IVoteService {
     private boolean isUtilisateurEqualsCreateur(Vote vote) {
         Utilisateur createur = this.pollRepository.findById(vote.getPoll().getId())
                 .orElseThrow(() -> new RuntimeException("C'est utilisateur ou ce poll est introuvable dans notre base de données"))
-                .getUtililsateur();
-        return vote.getUtililsateur().getId() == createur.getId();
+                .getutilisateur();
+        return vote.getutilisateur().getId() == createur.getId();
     }
 }

@@ -11,17 +11,17 @@ public class UtilisateurResponseMapper implements Function<Utilisateur, Utilisat
     /**
      * Applies this function to the given argument.
      *
-     * @param utililsateur the function argument
+     * @param utilisateur the function argument
      * @return the function result
      */
     @Override
-    public UtilisateurResponse apply(Utilisateur utililsateur) {
+    public UtilisateurResponse apply(Utilisateur utilisateur) {
         return new UtilisateurResponse(
-                utililsateur.getId(),
-                utililsateur.getNomUtilisateur(),
-                utililsateur.getEmail(),
-                utililsateur.getDateCreation(),
-                utililsateur.getRole()
+                utilisateur.getId(),
+                utilisateur.getNomUtilisateur(),
+                utilisateur.getEmail(),
+                utilisateur.getDateCreation(),
+                utilisateur.getRole()
         );
     }
 }

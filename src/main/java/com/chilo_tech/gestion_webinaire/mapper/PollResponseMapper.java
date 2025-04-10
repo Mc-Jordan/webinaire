@@ -22,7 +22,7 @@ public class PollResponseMapper implements Function<Poll, PollResponse> {
                 poll.getQuestion(),
                 poll.getDateCreation(),
                 poll.isMultipleOption(),
-                poll.getUtililsateur(),
+                poll.getutilisateur(),
                 poll.getOptions().stream().map(option -> Map.of("id",option.getId(),"description",option.getDescription()))
         );
     }
