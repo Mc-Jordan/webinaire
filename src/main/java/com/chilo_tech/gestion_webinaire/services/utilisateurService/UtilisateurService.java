@@ -1,12 +1,10 @@
 package com.chilo_tech.gestion_webinaire.services.utilisateurService;
 
 import com.chilo_tech.gestion_webinaire.dto.UtilisateurResponse;
-import com.chilo_tech.gestion_webinaire.mapper.UtilisateurRequestMapper;
 import com.chilo_tech.gestion_webinaire.mapper.UtilisateurResponseMapper;
 import com.chilo_tech.gestion_webinaire.model.Utilisateur;
 import com.chilo_tech.gestion_webinaire.repositories.UtiliseurRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
@@ -15,7 +13,7 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
-public class UtilisateurService implements IUtilisateurService{
+public class UtilisateurService implements IUtilisateurService {
     private final UtiliseurRepository utiliseurRepository;
     private final UtilisateurResponseMapper utilisateurResponseMapper;
 
