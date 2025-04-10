@@ -59,7 +59,7 @@ public class PollService implements IPollService {
         this.isPollValid(poll);
         pollOptional.setMultipleOption(poll.isMultipleOption());
         pollOptional.setQuestion(poll.getQuestion());
-        pollOptional.setutilisateur(poll.getutilisateur());
+        pollOptional.setUtilisateur(poll.getUtilisateur());
 
         return this.pollResponseMapper.apply(this.pollRepository.saveAndFlush(pollOptional));
     }
@@ -134,7 +134,7 @@ public class PollService implements IPollService {
             throw new RuntimeException("Les données sont incompletes car la question en elle-même n'est pas defini");
         } else if (poll.getOptions().size() < 2) {
             throw new RuntimeException("Il n'y a pas assez de propositions dans les Options pour la question: le minimum est deux(2)");
-        } else if (this.utiliseurRepository.findById(poll.getutilisateur().getId()).isEmpty()) {
+        } else if (this.utiliseurRepository.findById(poll.getUtilisateur().getId()).isEmpty()) {
             throw new RuntimeException("Veuillez Spécifier un utilisateur valide comme createur de la question");
         }
         int index = 0;

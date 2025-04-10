@@ -24,7 +24,7 @@ public class VoteResponseMapper implements Function<Vote, VoteResponse> {
         return new VoteResponse(
                 vote.getId(),
                 vote.getDateVote(),
-                Map.of("utilisateur", vote.getutilisateur()),
+                Map.of("utilisateur", vote.getUtilisateur()),
                 Map.of("poll", this.pollResponseMapper.apply(vote.getPoll())),
                 Map.of("optionChoisi",this.optionResponseMapper.apply(vote.getOption()))
         );
