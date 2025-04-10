@@ -2,7 +2,7 @@ package com.chilo_tech.gestion_webinaire.services.voteService;
 
 import com.chilo_tech.gestion_webinaire.dto.VoteResponse;
 import com.chilo_tech.gestion_webinaire.mapper.VoteResponseMapper;
-import com.chilo_tech.gestion_webinaire.model.Utililsateur;
+import com.chilo_tech.gestion_webinaire.model.Utilisateur;
 import com.chilo_tech.gestion_webinaire.model.Vote;
 import com.chilo_tech.gestion_webinaire.repositories.PollRepository;
 import com.chilo_tech.gestion_webinaire.repositories.VoteRepository;
@@ -104,7 +104,7 @@ public class VoteService implements IVoteService {
     }
 
     private boolean isUtilisateurEqualsCreateur(Vote vote) {
-        Utililsateur createur = this.pollRepository.findById(vote.getPoll().getId())
+        Utilisateur createur = this.pollRepository.findById(vote.getPoll().getId())
                 .orElseThrow(() -> new RuntimeException("C'est utilisateur ou ce poll est introuvable dans notre base de données"))
                 .getUtililsateur();
         return vote.getUtililsateur().getId() == createur.getId();

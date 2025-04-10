@@ -1,20 +1,21 @@
 package com.chilo_tech.gestion_webinaire.services.utilisateurService;
 
-import com.chilo_tech.gestion_webinaire.model.Utililsateur;
+import com.chilo_tech.gestion_webinaire.dto.UtilisateurResponse;
+import com.chilo_tech.gestion_webinaire.model.Utilisateur;
 
 import java.util.List;
 
 public interface IUtilisateurService {
 
-    Utililsateur ajouterUtililsateur(Utililsateur utililsateur);
+    UtilisateurResponse ajouterUtililsateur(Utilisateur utililsateur);
 
-    List<Utililsateur> ajouterUtililsateur(List<Utililsateur> utililsateurs);
+    List<UtilisateurResponse> ajouterUtililsateur(List<Utilisateur> utililsateurs);
 
-    Utililsateur modifierUtililsateur(Utililsateur utililsateur, int id);
+    UtilisateurResponse modifierUtililsateur(Utilisateur utililsateur, int id);
 
     void supprimerUtilisateur(int id);
 
-    List<Utililsateur> afficherUtililsateur();
+    List<UtilisateurResponse> afficherUtililsateur();
 
-    Utililsateur afficherUtililsateur(int id);
+    UtilisateurResponse afficherUtililsateur(int id);
 }

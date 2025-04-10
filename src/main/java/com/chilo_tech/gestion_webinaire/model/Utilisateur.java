@@ -13,7 +13,7 @@ import java.sql.Timestamp;
 @Getter
 @Setter
 @Builder
-public class Utililsateur {
+public class Utilisateur {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

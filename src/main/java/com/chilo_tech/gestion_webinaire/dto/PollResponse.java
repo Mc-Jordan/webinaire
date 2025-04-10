@@ -1,6 +1,6 @@
 package com.chilo_tech.gestion_webinaire.dto;
 
-import com.chilo_tech.gestion_webinaire.model.Utililsateur;
+import com.chilo_tech.gestion_webinaire.model.Utilisateur;
 
 import java.sql.Timestamp;
 import java.util.Map;
@@ -11,7 +11,7 @@ public record PollResponse(
         String question,
         Timestamp dateCreation,
         boolean isMultipleOption,
-        Utililsateur utililsateur,
+        Utilisateur utililsateur,
         Stream<Map<String, Object>> options
 ){
 }

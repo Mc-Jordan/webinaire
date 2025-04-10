@@ -1,6 +1,9 @@
 package com.chilo_tech.gestion_webinaire.controllers;
 
-import com.chilo_tech.gestion_webinaire.model.Utililsateur;
+import com.chilo_tech.gestion_webinaire.dto.UtilisateurRequest;
+import com.chilo_tech.gestion_webinaire.dto.UtilisateurResponse;
+import com.chilo_tech.gestion_webinaire.mapper.UtilisateurRequestMapper;
+import com.chilo_tech.gestion_webinaire.model.Utilisateur;
 import com.chilo_tech.gestion_webinaire.services.utilisateurService.UtilisateurService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -15,31 +18,32 @@ import java.util.List;
 public class UtilisateurController {
 
     private final UtilisateurService utilisateurService;
+    private final UtilisateurRequestMapper utilisateurRequestMapper;
 
     @PostMapping
-    public ResponseEntity<Utililsateur> ajoutUtilisateur(@RequestBody Utililsateur utililsateur){
-        return new ResponseEntity<>(this.utilisateurService.ajouterUtililsateur(utililsateur), HttpStatus.CREATED);
+    public ResponseEntity<?> ajoutUtilisateur(@RequestBody UtilisateurRequest utilisateurRequest){
+        return new ResponseEntity<>(this.utilisateurService.ajouterUtililsateur(this.utilisateurRequestMapper.apply(utilisateurRequest)), HttpStatus.CREATED);
     }
 
 
     @PostMapping("/all")
-    public ResponseEntity<List<Utililsateur>> ajoutUtilisateurs(@RequestBody List<Utililsateur> utililsateurs){
-        return new ResponseEntity<>(this.utilisateurService.ajouterUtililsateur(utililsateurs), HttpStatus.CREATED);
+    public ResponseEntity<List<?>> ajoutUtilisateurs(@RequestBody List<UtilisateurRequest> utililsateursRequests){
+        return new ResponseEntity<>(this.utilisateurService.ajouterUtililsateur(utililsateursRequests.stream().map(this.utilisateurRequestMapper).toList()), HttpStatus.CREATED);
     }
 
     @GetMapping
-    public  ResponseEntity<List<Utililsateur>> afficheUtilisateur(){
+    public  ResponseEntity<List<?>> afficheUtilisateur(){
         return new ResponseEntity<>(this.utilisateurService.afficherUtililsateur(), HttpStatus.FOUND);
     }
 
     @GetMapping("/utilisateur/{id}")
-    public  ResponseEntity<Utililsateur> afficheUtilisateur(@PathVariable int id){
+    public  ResponseEntity<?> afficheUtilisateur(@PathVariable int id){
         return new ResponseEntity<>(this.utilisateurService.afficherUtililsateur(id), HttpStatus.FOUND);
     }
 
     @PutMapping("/utilisateur/{id}")
-    public  ResponseEntity<Utililsateur> modifierUtilisateur(@PathVariable int id, @RequestBody Utililsateur utililsateur){
-        return new ResponseEntity<>(this.utilisateurService.modifierUtililsateur(utililsateur,id), HttpStatus.ACCEPTED);
+    public  ResponseEntity<UtilisateurResponse> modifierUtilisateur(@PathVariable int id, @RequestBody UtilisateurRequest utililsateurRequest){
+        return new ResponseEntity<>(this.utilisateurService.modifierUtililsateur(this.utilisateurRequestMapper.apply(utililsateurRequest), id), HttpStatus.ACCEPTED);
     }
 
     @DeleteMapping("/utilisateur/{id}")

@@ -3,11 +3,9 @@ package com.chilo_tech.gestion_webinaire.mapper;
 import com.chilo_tech.gestion_webinaire.dto.PollRequest;
 import com.chilo_tech.gestion_webinaire.model.Option;
 import com.chilo_tech.gestion_webinaire.model.Poll;
-import com.chilo_tech.gestion_webinaire.model.Utililsateur;
+import com.chilo_tech.gestion_webinaire.model.Utilisateur;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.function.Function;
 
 @Component
@@ -24,13 +22,13 @@ public class PollRequestMapper implements Function<PollRequest, Poll> {
                 pollRequest.question(),
                 null,
                 pollRequest.multipleOption(),
-                Utililsateur.builder()
+                Utilisateur.builder()
                         .id(pollRequest.utilisateur())
                         .build(),
                 pollRequest.options().stream().map(option -> Option.builder()
-                                            .description(option.get("description"))
-                                            .build()
-                        ).toList()
+                        .description(option.get("description"))
+                        .build()
+                ).toList()
         );
     }
 }
