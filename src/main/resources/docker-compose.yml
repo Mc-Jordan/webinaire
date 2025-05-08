@@ -36,15 +36,15 @@ services:
     networks:
       - directus-net
 
-  phpmyadmin:
-    image: phpmyadmin:5.2.1-apache
-    container_name: ms-scoreuser-pma
-    environment:
-      PMA_HOST: database
-    ports:
-      - "8082:80"
-    networks:
-      - directus-net
+#  phpmyadmin:
+#    image: phpmyadmin:5.2.1-apache
+#    container_name: ms-scoreuser-pma
+#    environment:
+#      PMA_HOST: database
+#    ports:
+#      - "8082:80"
+#    networks:
+#      - directus-net
 
 
 volumes:

@@ -7,3 +7,4 @@ public record FrontendRequestVote(
         List<Integer> questions,
         List<Integer> reponses
 ) {}
+

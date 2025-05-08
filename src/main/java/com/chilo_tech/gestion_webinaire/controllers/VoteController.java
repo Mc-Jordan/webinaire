@@ -1,21 +1,53 @@
 package com.chilo_tech.gestion_webinaire.controllers;
 
 
-import com.chilo_tech.gestion_webinaire.dto.VoteRequest;
-import com.chilo_tech.gestion_webinaire.mapper.VoteRequestMapper;
-import com.chilo_tech.gestion_webinaire.services.voteService.VoteService;
-import lombok.AllArgsConstructor;
-import org.springframework.http.HttpStatus;
+import com.chilo_tech.gestion_webinaire.dto.BackendRequestVote;
+import com.chilo_tech.gestion_webinaire.dto.FrontendRequestVote;
+import com.chilo_tech.gestion_webinaire.restserver.IBackOfficeClient;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/votes")
-@AllArgsConstructor
+@CrossOrigin("*")
 public class VoteController {
+    private final IBackOfficeClient iBackOfficeClient;
 
+    @Value("${backoffice.api.token}")
+    private String TOKEN;
+
+    public VoteController(IBackOfficeClient iBackOfficeClient) {
+        this.iBackOfficeClient = iBackOfficeClient;
+    }
+
+
+    @PostMapping
+    public ResponseEntity<?> ajouterVote(@RequestBody List<FrontendRequestVote> frontendRequestVotes) {
+        List<BackendRequestVote> backendRequestVotes = frontendRequestVotes.stream().map(
+                this::transformRequest
+        ).toList();
+        return iBackOfficeClient.createVotes("Bearer "+TOKEN, backendRequestVotes);
+    }
+
+    private BackendRequestVote transformRequest(FrontendRequestVote frontendRequest) {
+        return new BackendRequestVote(
+                frontendRequest.contacts().stream()
+                        .map(BackendRequestVote.Contact::new)
+                        .collect(Collectors.toList()),
+                frontendRequest.questions().stream()
+                        .map(BackendRequestVote.Question::new)
+                        .collect(Collectors.toList()),
+                frontendRequest.reponses().stream()
+                        .map(BackendRequestVote.Reponse::new)
+                        .collect(Collectors.toList())
+        );
+    }
+
+/*
     private final VoteService voteService;
     private final VoteRequestMapper voteRequestMapper;
 
@@ -50,4 +82,5 @@ public class VoteController {
         this.voteService.supprimerVote(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+ */
 }
